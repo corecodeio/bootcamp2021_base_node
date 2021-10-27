@@ -8,9 +8,9 @@ module.exports.createCurrency =  (req, res, next) => {
 }
 
 module.exports.getCurrency = (req, res, next) => {
-  const args = [parseInt(req.params.id, 10)];
+  const args = [Number(req.params.id)];
   Currency.findById(args)
-  .then(({rows}) => {
+  .then(({ rows }) => {
     res.status(200).json({ valid: true, data: rows })
   })
   .catch((e) => res.status(400).json({ valid: false, message: e }));
