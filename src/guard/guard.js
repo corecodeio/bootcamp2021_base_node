@@ -7,6 +7,7 @@ const firebaseGuard = async (req, res, next) => {
   let idToken = req.headers.authorization.split('Bearer ')[1];
   try {
     const decodedIdToken = await firebase.auth().verifyIdToken(idToken);
+    console.log(decodedIdToken);
     req.user = decodedIdToken;
     next();
   } catch (e) {
